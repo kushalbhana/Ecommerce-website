@@ -19,9 +19,41 @@
         <h5>{{product.product_name}}</h5>
         <p><b>Rs.{{product.price}} </b></p>
         <p>{{product.desc}}</p>
+        <p>{{product.rating}} <span>&#9733;</span> </p>
 
 
     </div>
+    </div>
+
+    <div class="container mt-5">
+        <h3>Reviews....</h3>
+    </div>
+
+    {% for comm in comments %}
+    <div class="container mt-2">
+        <b>{{comm.name}}</b> <br>
+        {{comm.comment}}
+
+    </div>
+
+    {% endfor %}
+
+    <div class="container mt-5">
+        <h3>Enter your comment here..</h3>
+        <form action="/shop/comment/" method="post"> {%csrf_token%}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"><b>Name</b></label>
+              <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="text" class="form-control" name="id" id="exampleInputEmail1" aria-describedby="emailHelp" value={{product.id}}>
+              
+        
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"> <b> Enter your review here.. </b></label>
+                <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
     </div>
 
 
