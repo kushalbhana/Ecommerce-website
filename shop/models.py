@@ -10,6 +10,8 @@ class Product(models.Model):
     desc = models.CharField(max_length=300)
     pub_date = models.DateField()
     image = models.ImageField(upload_to='shop/images', default="")
+    rating = models.FloatField(default=0)
+
 
     def __str__(self):
         return self.product_name
@@ -47,3 +49,8 @@ class OrderUpdate(models.Model):
     def __str__(self):
         return self.update_desc[0:7] + "..."
 
+class Comments(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    comment = models.TextField()
+    prod_id = models.IntegerField(default=1)
